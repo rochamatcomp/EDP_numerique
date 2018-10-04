@@ -8,13 +8,10 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import random
 
-
-pi=3.14159265358979323846
-
 # definition de la vitesse fonction de x: a(x)=celerite(x)
 def celerite(x):
-    pi=3.14159265358979323846
-    return x #np.sin(pi*x)
+    return x
+    #return  np.sin(np.pi * x)
 
 
 
@@ -42,7 +39,7 @@ NT = int(T/dt)  #nombre de pas de temps
 # Pour la figure
 xx = np.zeros(NX)
 for i in np.arange(0,NX):
-      xx[i]=-1+i*dx
+      xx[i] = -1+i*dx
 
 #plt.ion()
 #ax = plt.gca(projection='3d')
@@ -70,12 +67,21 @@ for j in np.arange(0,NX):
         U_data[j]=1.
 """
 for i in np.arange(0,NX):
-    U_old[i]=0
-    if (-0.2<xx[i]<0.2):
-        U_old[i]=1
-    U_sol[i]=0
-    if (-0.2<xx[i]*np.exp(-T)<0.2):
-        U_sol[i]=0
+    U_old[i] = 0
+    if (-0.2 < xx[i] < 0.2):
+        #U_old[i] = 1
+        U_old[i] = 1
+             
+    U_sol[i] = 0
+    
+    # celerite positive
+    if (-0.2 < xx[i]*np.exp(-T) < 0.2):
+        #U_sol[i] = 1
+        U_sol[i] = np.exp(-T)
+    
+    # celerite negative
+    #if (-0.2 < xx[i]*np.exp(T) < 0.2):
+    #    U_sol[i] = 1
         
     
 
@@ -112,33 +118,30 @@ for n in np.arange(0,NT):
         print ("t=",time)
  #       print ("U_old, begin0",U_old)
         
- 
-
-    
+   
 # Upwind        
     for j in np.arange(1,NX-1):
-        #ddU[j] =(max(aa[j],0)*U_old[j] -  max(-aa[j],0)*U_old[j+1])-(max(aa[j-1],0)*U_old[j-1] -  max(-aa[j-1],0)*U_old[j])
-        ddU[j] =max(-aa[j],0)*(U_old[j] -  U_old[j+1])-max(aa[j-1],0)*(U_old[j-1] - U_old[j])
-        #U_old[j]-U_old[j-1]       
+        #ddU[j] = max(-aa[j],0)*(U_old[j] -  U_old[j+1])-max(aa[j-1],0)*(U_old[j-1] - U_old[j])
+        ddU[j] = (max(aa[j],0)*U_old[j] -  max(-aa[j],0)*U_old[j+1]) - (max(aa[j-1],0)*U_old[j-1] - max(-aa[j-1],0)*U_old[j])
+        
+        #U_old[j]-U_old[j-1]        
+    
     j=0
-    #ddU[j] =(max(aa[j],0)*U_old[j] -  max(-aa[j],0)*U_old[j+1])-(max(aa[j-1],0)*U_old[NX-2] -  max(-aa[j-1],0)*U_old[j])
-    ddU[j] =max(-aa[j],0)*(U_old[j] -  U_old[j+1])-max(aa[NX-2],0)*(U_old[NX-2] - U_old[j])
-    
-    
-
+    #ddU[j] = max(-aa[j],0)*(U_old[j] -  U_old[j+1])-max(aa[NX-2],0)*(U_old[NX-2] - U_old[j])
+    ddU[j] = (max(aa[j],0)*U_old[j] -  max(-aa[j],0)*U_old[j+1])-(max(aa[j-1],0)*U_old[NX-2] -  max(-aa[j-1],0)*U_old[j])
     
     
    
 # Acutalisation   scehams explicites
     for j in np.arange(0,NX-1):
-        U_new[j]=U_old[j]-(dt/dx)*ddU[j]
+        U_new[j] = U_old[j]-(dt/dx)*ddU[j]
  #   print ("U_old, begin3",U_old)
     
-    U_new[NX-1]=U_new[0]
+    U_new[NX-1] = U_new[0]
     
 #    print ("U_old, begin4",U_old)
     for j in np.arange(0,NX-1):
-        U_old[j]=U_new[j]
+        U_old[j] = U_new[j]
     
 
 
@@ -148,7 +151,8 @@ print ("tFinal=",time)
 # caclul erreur numerique
 norme=0.
 for j in np.arange(0,NX-1):
-    norme=norme+ dx*np.fabs(U_new[j]-U_sol[j])
+    norme = norme+ dx*np.fabs(U_new[j] - U_sol[j])
+    
 #norme=np.sqrt(norme)
 print ("Erreur/norme L1",norme)
 #print(U_new)   

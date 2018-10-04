@@ -10,13 +10,10 @@ from matplotlib.lines import Line2D
 import numpy as np
 import random
 
-pi=3.14159265358979323846
-
 
 # definition de la vitesse fonction de x: a(x)=celerite(x)
 def celerite(x):
-    pi = np.pi
-    return  x #np.sin(pi*x)
+    return  np.sin(np.pi * x)
 
 
 
@@ -90,7 +87,7 @@ plt.figure(-1)
 plt.plot(xx,aa)
 plt.legend(("vitesse"), 'best')
 plt.xlabel('x')
-plt.ylabel('v')
+plt.ylabel('t')
 #plt.ylabel('YY')
 #plt.show()
 
