@@ -2,8 +2,8 @@
 
 // Numerical methods for unsteady partial differential equations (PDE)
 // Author: Andre ALMEIDA ROCHA <andre.almeida_rocha@etu.upmc.fr>
-// Professor: M. Bruno Despres
-// Instituition: Universite Pierre et Marie Curie
+// Professor: M. Bruno DESPRES
+// Instituition: Universite Pierre et Marie Curie - Paris 6
 
 // TP1: Transport equation with constant coefficients
 // Space domain: (0, 1). Periodic boundary conditions: u(x+1,t) = u(x,t), period 1
@@ -14,9 +14,9 @@ exec("utils.sci")
 // Defines the initial condition (time = 0)
 deff('y = initialCondition(x)','y = sin(2*%pi*x)')
 
-// Space mesh size: J in N*
-//mesh = 100
-mesh = 2
+// Spatial mesh size: J in N*
+//spatials = 100
+spatials = 2
 
 // Speed
 speed = 1
@@ -28,15 +28,12 @@ cfl = 0.1
 //finalTime = 0.25
 finalTime = 0.05
 
-// Total of columns (spatials)
-spatials = mesh
-
 // Spatial step: delta x = 1/J
-spatialStep = 1/mesh
+spatialStep = 1 / spatials
 
 // xj = j * delta x (spatial elements)
 // Vector of spatial elements
-spatialVector = [0:mesh] * spatialStep
+spatialVector = [0:spatials] * spatialStep
 
 // Time step: delta t = cfl * delta x / speed
 timeStep = cfl * spatialStep / speed
@@ -60,5 +57,8 @@ analyticalSolution = analyticalSolver(spatials, times, spatialVector, timeVector
 
 print(%io(2), discreteSolution)
 print(%io(2), analyticalSolution)
+
+disp(spatialVector)
+disp(timeVector)
 
 exit()
