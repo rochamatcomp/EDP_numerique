@@ -132,7 +132,7 @@ def update_probabilist_scheme(U_new, U_int, U_old, NX):
         U_new[j]=U_int[j]
         U_old[j]=U_new[j]
 
-def execute_scheme():
+def execute_scheme(NX, NT, dx, CFL, dt, U_new, U_old, U_int, ddU):
     """
     Execute the scheme
     """
@@ -146,7 +146,7 @@ def execute_scheme():
         #lax_wendroff_scheme(U_new, U_old, ddU, NX, CFL)
         #centered_explicit_scheme(U_new, U_old, ddU, NX, CFL)
         #centered_implicit_scheme(U_new, U_old, ddU, NX, CFL)
-        upwind_scheme(U_new, U_old, ddU, NX, CFL)
+        #upwind_scheme(U_new, U_old, ddU, NX, CFL)
                         
         #montecarlo_scheme(U_new, U_int, U_old, CFL, NX)
         #glimm_scheme(U_new, U_int, U_old, CFL, NX)    
@@ -239,7 +239,11 @@ def main():
     # Boucle en temps
     random.seed()
     
-    execute_scheme()
+    
+    
+    execute_scheme(NX, NT, dx, CFL, dt, U_new, U_old, U_int, ddU)
+    
+    
     
     plt.figure(-1)
     plt.plot(xx,U_old)
