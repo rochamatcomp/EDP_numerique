@@ -1,0 +1,180 @@
+% !TeX encoding = UTF-8
+% !TeX program = pdflatex
+% !TeX spellcheck = fr_FR
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}       % encodage à privilégier pour la portabilité et +
+\usepackage[frenchb]{babel}       % francisation de libellés et de la typographie
+\usepackage[T1]{fontenc}          % encodage européen des caractères (Cork)
+\usepackage{lmodern}              % police europ'eennes vectorielles CM-like
+\usepackage[margin=28mm,bindingoffset=10mm]{geometry}
+
+\usepackage{amsmath, mathtools}   % équations, matrices, etc..
+\usepackage{amssymb,amsfonts}  % tous les symboles math de AMS
+
+\renewcommand{\thesection}{\alph{section})}
+
+\begin{document}
+
+\part*{Semi-group estimates}
+Pour \begin{math}\sigma \in \mathbb{R}\end{math}
+Consideron le système d'onde linéaire en 
+
+\renewcommand{\theequation}{\Roman{equation}}
+
+\begin{alignat}{1}
+    \partial_{t}p + \partial_{x}v &= \sigma(v-p) \label{I} \\
+    \partial_{t}v + \partial_{x}p &= \sigma(p-v) \label{II}
+\end{alignat}
+
+\setcounter{equation}{0}
+\renewcommand{\theequation}{\arabic{equation}}
+
+
+\section{Determine \begin{math}u = (p, v)\end{math} en fonction de \begin{math}u_{0} = (p_{0}, v_{0})\end{math}}
+\subsection*{I+II}
+
+\begin{equation*}
+\begin{array}{lcl}
+    \partial_{t}(p+v) + \partial_{x}(p+v) &=& \sigma(v-p) + \sigma(p-v) \\
+    &=& \sigma(v-p + p-v) \\
+    &=& \sigma(0)
+\end{array}
+\end{equation}
+
+\begin{equation}
+    \partial_{t}(p+v) + \partial_{x}(p+v) = 0 \label{1}
+\end{equation}
+
+
+\subsection*{I-II}
+
+\begin{equation*}
+\begin{array}{lcl}
+    \partial_{t}(p-v) + \partial_{x}(v-p) &=& \sigma(v-p) - \sigma(p-v) \\
+    \partial_{t}(p-v) - \partial_{x}(p-v) &=& \sigma(v-p - p+v) \\    
+    &=& \sigma(2v-2p) \\
+    &=& 2\sigma(v-p)
+\end{array}
+\end{equation}
+
+\begin{equation}
+    \partial_{t}(p-v) + \partial_{x}(p-v) = -2\sigma(p-v) \label{2}
+\end{equation}
+
+
+\subsection*{On a deux équations de transport.}
+
+\begin{equation}
+\left\{
+\begin{array}{lcl}
+    \partial_{t}(p+v) + \partial_{x}(p+v) &=& 0 \ref{I} \\
+    \partial_{t}(p-v) + \partial_{x}(p-v) &=& -2\sigma(p-v) \ref{II} 
+\end{array}
+\right.
+\end{equation}
+
+\subsection*{Resolution par la méthode des caractéristiques.}
+\subsubsection*{\ref{1}}
+
+\begin{equation*}
+\left\{
+\begin{array}{lcl} 
+    \frac{dx^{*}(t)}{dt} &=& 1 \\    
+    x^{*}(t^{*}) &=& x_{*}
+\end{array}
+\right.
+\end{equation}
+
+\begin{displaymath}
+\Rightarrow
+\end{displaymath}
+
+\begin{equation*}
+\begin{array}{lcl}
+x_^{*}(t) &=& t +c \\
+x^{*}(t_{*}) &=& x_{*} &=& t^{*}+c \\
+c &=& x_{*}-t^{*} \\
+x^{*}(t) &=& t + x_{*}-t^{*}
+\end{array}
+\end{equation}
+
+\begin{equation*}
+\begin{array}{lcl}
+    (p+v)(x_{*},t^{*}) &=& (p_{0}+v_{0})(x_{*},t^{*}) \\
+    (p+v)(x,t) &=& p_{0}(x,t) + v_{0}(x,t)\\
+\end{array}
+\end{equation}
+ 
+\subsubsection*{\ref{2}}
+
+\begin{equation*}
+\left\{
+\begin{array}{lcl}
+    \frac{dx_{1}^{*}(t)}{dt} &=& -1 \\    
+    x_{1}^{*}(t^{*}) &=& x_{*}
+\end{array}
+\right.
+\end{equation}
+
+\begin{displaymath}
+\Rightarrow
+\end{displaymath}
+
+\begin{equation*}
+\begin{array}
+    x_{1}^{*}(t) &=& -t +c_{1} \\
+    x_{1}^{*}(t_{*}) &=& x_{*} &=& -t^{*}+c_{1} \\
+    c_{1} &=& x_{*}-t^{*} \\
+    x^{*}(t) &=& -t + x_{*}+t^{*}
+\end{array}
+\end{equation}
+
+\begin{equation*}
+\left\{
+\begin{array}{lcl}
+    \frac{d}{dt}(p-v)(x_{1}^{*}(t), t) &=& -2\sigma (p-v)(x_{*}(t), t)
+\end{array}
+\right,
+(p-v)(x_{1}^{*}(t), t) &=& K \exp^{-2\sigma t}
+\end{equation}
+
+\begin{displaymath}
+    K = K \exp^{-2\sigma t} = (p-v)(x_{1}^{*}(0), 0) = (p_{0}-v_{0})(x_{1}^{*} + t^{*})
+\end{displaymath}
+
+\begin{equation*}
+\begin{array}{lcl}
+    (p-v)(x_{1}^{*}(t), t) &=& (p_{0}-v_{0})(x_{*} + t^{*})\exp^{-2\sigma t^{*}} \\
+    (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t} 
+\end{array}
+\end{equation}
+
+\subsection*{Solutions}
+
+\begin{equation*}
+\left\{
+\begin{array}{lcl}
+    (p+v) &=& (x - t) + u_{0}(x - t) \\
+    (p-v) &=& (x + t) \exp^{-2\sigma t} - u_{0}(x + t) \exp^{-2\sigma t}
+\end{array}
+\right.
+\end{equation}
+
+\begin{equation}
+\begin{array}{lcll}
+    u(x,t) &=& (p(x,t), v(x,t)) & \forall t \ge 0 \\
+    avec & & & \\
+    p(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) + (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] & \\
+    v(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) - (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] &
+\end{array}
+\end{equation}
+
+
+\section{}
+
+\part*{Numerical methods}
+
+\section{}
+
+
+\end{document}
