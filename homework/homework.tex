@@ -7,161 +7,131 @@
 \usepackage[T1]{fontenc}          % encodage européen des caractères (Cork)
 \usepackage{lmodern}              % police europ'eennes vectorielles CM-like
 \usepackage[margin=28mm,bindingoffset=10mm]{geometry}
-
 \usepackage{amsmath, mathtools}   % équations, matrices, etc..
 \usepackage{amssymb,amsfonts}  % tous les symboles math de AMS
 
-\renewcommand{\thesection}{\alph{section})}
+\renewcommand{\thesubsection}{\alph{subsection})}
 
 \begin{document}
 
-\part*{Semi-group estimates}
-Pour \begin{math}\sigma \in \mathbb{R}\end{math}
-Consideron le système d'onde linéaire en 
-
-\renewcommand{\theequation}{\Roman{equation}}
+\section{Semi-group estimates}
+Pour \( \sigma \in \mathbb{R} \)
+Considerons le système d'onde linéaire en dimension un
 
 \begin{alignat}{1}
-    \partial_{t}p + \partial_{x}v &= \sigma(v-p) \label{I} \\
-    \partial_{t}v + \partial_{x}p &= \sigma(p-v) \label{II}
+    \partial_{t}p + \partial_{x}v &= \sigma(v-p) \\
+    \partial_{t}v + \partial_{x}p &= \sigma(p-v)
 \end{alignat}
 
-\setcounter{equation}{0}
-\renewcommand{\theequation}{\arabic{equation}}
-
-
-\section{Determine \begin{math}u = (p, v)\end{math} en fonction de \begin{math}u_{0} = (p_{0}, v_{0})\end{math}}
-\subsection*{I+II}
+\subsection{Determine \( u = (p, v) \) en fonction de \( u_{0} = (p_{0}, v_{0}) \)}
+\subsubsection*{(1)+(2)}
 
 \begin{equation*}
-\begin{array}{lcl}
-    \partial_{t}(p+v) + \partial_{x}(p+v) &=& \sigma(v-p) + \sigma(p-v) \\
-    &=& \sigma(v-p + p-v) \\
-    &=& \sigma(0)
-\end{array}
-\end{equation}
+    \begin{array}{rcl}
+        \partial_{t}(p+v) + \partial_{x}(p+v) &=& \sigma(v-p) + \sigma(p-v) \\
+        &=& \sigma(v-p + p-v) \\
+        &=& \sigma(0) \\
+        \partial_{t}(p+v) + \partial_{x}(p+v) &=& 0
+    \end{array}
+\end{equation*}
 
-\begin{equation}
-    \partial_{t}(p+v) + \partial_{x}(p+v) = 0 \label{1}
-\end{equation}
-
-
-\subsection*{I-II}
+\subsubsection*{(1)-(2)}
 
 \begin{equation*}
-\begin{array}{lcl}
-    \partial_{t}(p-v) + \partial_{x}(v-p) &=& \sigma(v-p) - \sigma(p-v) \\
+\begin{array}{rcl}
+    ???\partial_{t}(p-v) + \partial_{x}(v-p) &=& \sigma(v-p) - \sigma(p-v) \\
     \partial_{t}(p-v) - \partial_{x}(p-v) &=& \sigma(v-p - p+v) \\    
     &=& \sigma(2v-2p) \\
-    &=& 2\sigma(v-p)
+    &=& 2\sigma(v-p) \\
+    \partial_{t}(p-v) - \partial_{x}(p-v) &=& -2\sigma(p-v)
 \end{array}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
-    \partial_{t}(p-v) + \partial_{x}(p-v) = -2\sigma(p-v) \label{2}
-\end{equation}
+\begin{alignat}{1}
+    \partial_{t}(p+v) + \partial_{x}(p+v) &= 0 \\
+    \partial_{t}(p-v) - \partial_{x}(p-v) &= -2\sigma(p-v)
+\end{alignat}
+On a deux équations de transport. \\
 
-
-\subsection*{On a deux équations de transport.}
-
-\begin{equation}
-\left\{
-\begin{array}{lcl}
-    \partial_{t}(p+v) + \partial_{x}(p+v) &=& 0 \ref{I} \\
-    \partial_{t}(p-v) + \partial_{x}(p-v) &=& -2\sigma(p-v) \ref{II} 
-\end{array}
-\right.
-\end{equation}
-
-\subsection*{Resolution par la méthode des caractéristiques.}
-\subsubsection*{\ref{1}}
+\subsubsection*{Resolution par la méthode des caractéristiques}
+\subsubsubsection*{(3)}
 
 \begin{equation*}
 \left\{
-\begin{array}{lcl} 
+\begin{array}{rcl} 
     \frac{dx^{*}(t)}{dt} &=& 1 \\    
     x^{*}(t^{*}) &=& x_{*}
 \end{array}
-\right.
-\end{equation}
-
-\begin{displaymath}
+\right. \\
 \Rightarrow
-\end{displaymath}
+\end{equation*}
 
 \begin{equation*}
-\begin{array}{lcl}
-x_^{*}(t) &=& t +c \\
-x^{*}(t_{*}) &=& x_{*} &=& t^{*}+c \\
+\begin{array}{rcl}
+x^{*}(t) &=& t +c \\
+x^{*}(t^{*}) &=& x_{*} = t^{*}+c \\
 c &=& x_{*}-t^{*} \\
 x^{*}(t) &=& t + x_{*}-t^{*}
 \end{array}
-\end{equation}
+\end{equation*}
 
 \begin{equation*}
-\begin{array}{lcl}
+\begin{array}{rcl}
     (p+v)(x_{*},t^{*}) &=& (p_{0}+v_{0})(x_{*},t^{*}) \\
     (p+v)(x,t) &=& p_{0}(x,t) + v_{0}(x,t)\\
 \end{array}
-\end{equation}
- 
-\subsubsection*{\ref{2}}
+\end{equation*}
+
+
+\subsubsubsection*{(4)}
 
 \begin{equation*}
 \left\{
-\begin{array}{lcl}
+\begin{array}{rcl}
     \frac{dx_{1}^{*}(t)}{dt} &=& -1 \\    
     x_{1}^{*}(t^{*}) &=& x_{*}
 \end{array}
-\right.
-\end{equation}
-
-\begin{displaymath}
+\right. \\
 \Rightarrow
-\end{displaymath}
+\end{equation*}
 
 \begin{equation*}
-\begin{array}
+\begin{array}{rcl}
     x_{1}^{*}(t) &=& -t +c_{1} \\
-    x_{1}^{*}(t_{*}) &=& x_{*} &=& -t^{*}+c_{1} \\
-    c_{1} &=& x_{*}-t^{*} \\
-    x^{*}(t) &=& -t + x_{*}+t^{*}
+    x_{1}^{*}(t^{*}) &=& x_{*} = -t^{*}+c_{1} \\
+    c_{1} &=& x_{*} + t^{*} \\
+    x^{*}(t) &=& -t + x_{*} + t^{*}
 \end{array}
-\end{equation}
+\end{equation*}
 
 \begin{equation*}
-\left\{
-\begin{array}{lcl}
-    \frac{d}{dt}(p-v)(x_{1}^{*}(t), t) &=& -2\sigma (p-v)(x_{*}(t), t)
+\begin{array}{rcl}
+    \frac{d}{dt}(p-v)(x_{1}^{*}(t), t) &=& -2\sigma (p-v)(x_{*}(t), t) \\
+    (p-v)(x_{1}^{*}(t), t) &=& K \exp^{-2\sigma t} \\
+    K &=& K \exp^{-2\sigma t} \\
+    &=& (p-v)(x_{1}^{*}(0), 0) \\
+    &=& (p_{0}-v_{0})(x_{1}^{*} + t^{*})
 \end{array}
-\right,
-(p-v)(x_{1}^{*}(t), t) &=& K \exp^{-2\sigma t}
-\end{equation}
-
-\begin{displaymath}
-    K = K \exp^{-2\sigma t} = (p-v)(x_{1}^{*}(0), 0) = (p_{0}-v_{0})(x_{1}^{*} + t^{*})
-\end{displaymath}
+\end{equation*}
 
 \begin{equation*}
-\begin{array}{lcl}
+\begin{array}{rcl}
     (p-v)(x_{1}^{*}(t), t) &=& (p_{0}-v_{0})(x_{*} + t^{*})\exp^{-2\sigma t^{*}} \\
     (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t} 
 \end{array}
-\end{equation}
-
-\subsection*{Solutions}
+\end{equation*}
 
 \begin{equation*}
 \left\{
-\begin{array}{lcl}
+\begin{array}{rcl}
     (p+v) &=& (x - t) + u_{0}(x - t) \\
     (p-v) &=& (x + t) \exp^{-2\sigma t} - u_{0}(x + t) \exp^{-2\sigma t}
 \end{array}
 \right.
-\end{equation}
+\end{equation*}
 
 \begin{equation}
-\begin{array}{lcll}
+\begin{array}{rcll}
     u(x,t) &=& (p(x,t), v(x,t)) & \forall t \ge 0 \\
     avec & & & \\
     p(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) + (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] & \\
@@ -170,11 +140,10 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 \end{equation}
 
 
-\section{}
+\subsubsection{}
 
-\part*{Numerical methods}
+\section{Numerical methods}
 
-\section{}
-
+\subsection{}
 
 \end{document}
