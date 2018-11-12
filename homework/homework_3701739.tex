@@ -16,7 +16,7 @@
 \part{Semi-group estimates}
 Soit \( \sigma \in \mathbb{R} \) un coefficient donné. Consider the linear wave system in dimension one
 
-Consideron le système d'onde linéaire en 
+Consideron le système d'onde linéaire en
 
 \renewcommand{\theequation}{\Alph{equation}}
 
@@ -45,7 +45,7 @@ Consideron le système d'onde linéaire en
 \begin{equation*}
 \begin{array}{rcl}
     \partial_{t}(p-v) - \partial_{x}(p-v) &=& \sigma(v-p) - \sigma(p-v) \\
-    &=& \sigma(v-p - p+v) \\    
+    &=& \sigma(v-p - p+v) \\
     &=& \sigma(2v-2p) \\
     &=& 2\sigma(v-p) \\
     \partial_{t}(p-v) - \partial_{x}(p-v) &=& -2\sigma(p-v)
@@ -62,8 +62,8 @@ Consideron le système d'onde linéaire en
 
 \begin{equation*}
 \left\{
-\begin{array}{rcl} 
-    \frac{\mathrm{d}x^{*}(t)}{\mathrm{d}t} &=& 1 \\    
+\begin{array}{rcl}
+    \frac{\mathrm{d}x^{*}(t)}{\mathrm{d}t} &=& 1 \\
     x^{*}(t_{*}) &=& x_{*}
 \end{array}
 \right.
@@ -91,7 +91,7 @@ x^{*}(t) &=& t + x_{*}-t_{*}
 \begin{equation*}
 \left\{
 \begin{array}{rcl}
-    \frac{\mathrm{d}x_{1}^{*}(t)}{\mathrm{d}t} &=& -1 \\    
+    \frac{\mathrm{d}x_{1}^{*}(t)}{\mathrm{d}t} &=& -1 \\
     x_{1}^{*}(t_{*}) &=& x_{*}
 \end{array}
 \right. \\
@@ -120,7 +120,7 @@ x^{*}(t) &=& t + x_{*}-t_{*}
 \begin{equation*}
 \begin{array}{rcl}
     (p-v)(x_{1}^{*}(t), t) &=& (p_{0}-v_{0})(x_{*} + t_{*})\exp^{-2\sigma t_{*}} \\
-    (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t} 
+    (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t}
 \end{array}
 \end{equation*}
 
@@ -146,6 +146,81 @@ x^{*}(t) &=& t + x_{*}-t_{*}
 \end{array}
 \end{equation}
 
+\subsection*{L'operator A, tel que \( u = \exp^{tA}u_{0} \)}
+
+\begin{equation*}
+\begin{array}{rcl}
+    u(x,t) &=& (p(x,t), v(x,t)) \\
+    \partial_{t}u(x,t) &=& (\partial_{t}p(x,t),  \partial_{t}v(x,t)) \\
+    \partial_{x}u(x,t) &=& (\partial_{x}p(x,t),  \partial_{x}v(x,t)) \\
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rcl}
+    \partial_{x}
+    \begin{pmatrix}
+        v \\
+        p
+    \end{pmatrix} &=&
+    \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \partial_{x}p \\
+        \partial_{x}v
+    \end{pmatrix}
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rcl}
+    \partial_{x}
+    \begin{pmatrix}
+        v \\
+        p
+    \end{pmatrix} &=&
+    A_{1}\partial_{x}u, \quad avec \\
+    A_{1} &=&
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix}
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rcl}
+    \begin{pmatrix}
+        \sigma(v-p) \\
+        \sigma(p-v)
+    \end{pmatrix} &=&
+    \begin{pmatrix}
+        -\sigma & \sigma \\
+        \sigma & -\sigma
+    \end{pmatrix}
+    \begin{pmatrix}
+        p \\
+        v
+    \end{pmatrix}
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rcl}
+    \begin{pmatrix}
+        \sigma(v-p) \\
+        \sigma(p-v)
+    \end{pmatrix} &=&
+    Bu, \quad avec \\
+    B &=&
+    \begin{pmatrix}
+        -\sigma & \sigma \\
+        \sigma & -\sigma
+    \end{pmatrix}
+\end{array}
+\end{equation*}
 
 \section{}
 

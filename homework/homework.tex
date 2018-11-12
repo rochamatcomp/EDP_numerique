@@ -24,7 +24,7 @@ Considerons le système d'onde linéaire en dimension un
 \end{alignat}
 
 \subsection{Determine \( u = (p, v) \) en fonction de \( u_{0} = (p_{0}, v_{0}) \)}
-\subsubsection*{(1)+(2)}
+(1)+(2)
 
 \begin{equation*}
     \begin{array}{rcl}
@@ -35,12 +35,12 @@ Considerons le système d'onde linéaire en dimension un
     \end{array}
 \end{equation*}
 
-\subsubsection*{(1)-(2)}
+(1)-(2)
 
 \begin{equation*}
 \begin{array}{rcl}
     ???\partial_{t}(p-v) + \partial_{x}(v-p) &=& \sigma(v-p) - \sigma(p-v) \\
-    \partial_{t}(p-v) - \partial_{x}(p-v) &=& \sigma(v-p - p+v) \\    
+    \partial_{t}(p-v) - \partial_{x}(p-v) &=& \sigma(v-p - p+v) \\
     &=& \sigma(2v-2p) \\
     &=& 2\sigma(v-p) \\
     \partial_{t}(p-v) - \partial_{x}(p-v) &=& -2\sigma(p-v)
@@ -51,15 +51,16 @@ Considerons le système d'onde linéaire en dimension un
     \partial_{t}(p+v) + \partial_{x}(p+v) &= 0 \\
     \partial_{t}(p-v) - \partial_{x}(p-v) &= -2\sigma(p-v)
 \end{alignat}
-On a deux équations de transport. \\
+
+On a deux équations de transport.
 
 \subsubsection*{Resolution par la méthode des caractéristiques}
-\subsubsubsection*{(3)}
+(3)
 
 \begin{equation*}
 \left\{
-\begin{array}{rcl} 
-    \frac{dx^{*}(t)}{dt} &=& 1 \\    
+\begin{array}{rcl}
+    \frac{dx^{*}(t)}{dt} &=& 1 \\
     x^{*}(t^{*}) &=& x_{*}
 \end{array}
 \right. \\
@@ -82,13 +83,12 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 \end{array}
 \end{equation*}
 
-
-\subsubsubsection*{(4)}
+(4)
 
 \begin{equation*}
 \left\{
 \begin{array}{rcl}
-    \frac{dx_{1}^{*}(t)}{dt} &=& -1 \\    
+    \frac{dx_{1}^{*}(t)}{dt} &=& -1 \\
     x_{1}^{*}(t^{*}) &=& x_{*}
 \end{array}
 \right. \\
@@ -117,7 +117,7 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 \begin{equation*}
 \begin{array}{rcl}
     (p-v)(x_{1}^{*}(t), t) &=& (p_{0}-v_{0})(x_{*} + t^{*})\exp^{-2\sigma t^{*}} \\
-    (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t} 
+    (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t}
 \end{array}
 \end{equation*}
 
@@ -130,17 +130,74 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 \right.
 \end{equation*}
 
-\begin{equation}
+\begin{equation*}
 \begin{array}{rcll}
     u(x,t) &=& (p(x,t), v(x,t)) & \forall t \ge 0 \\
     avec & & & \\
     p(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) + (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] & \\
     v(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) - (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] &
 \end{array}
-\end{equation}
+\end{equation*}
 
 
-\subsubsection{}
+\subsubsection*{Écrire explicitement l'operator A, tel que \( u = \exp^{tA}u_{0} \)}
+
+\begin{equation*}
+\begin{array}{rcl}
+    u &=& (p, v) \\
+    \partial_{t}u &=& (\partial_{t}p,  \partial_{t}v) \\
+    \partial_{x}u &=& (\partial_{x}p,  \partial_{x}v)
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rclcl}
+    \partial_{x}
+    \begin{pmatrix}
+        v \\
+        p
+    \end{pmatrix} &=&
+    \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \partial_{x}p \\
+        \partial_{x}v
+    \end{pmatrix} &=&
+    A_{1}\partial_{x}u, \quad avec \\
+    A_{1} &=&
+    \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix} & &
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rclcl}
+    \begin{pmatrix}
+        \sigma(v-p) \\
+        \sigma(p-v)
+    \end{pmatrix} &=&
+    \begin{pmatrix}
+        -\sigma & \sigma \\
+        \sigma & -\sigma
+    \end{pmatrix}
+    \begin{pmatrix}
+        p \\
+        v
+    \end{pmatrix} &=&
+    Bu, \quad avec \\
+    B &=&
+    \begin{pmatrix}
+        -\sigma & \sigma \\
+        \sigma & -\sigma
+    \end{pmatrix} & &
+\end{array}
+\end{equation*}
+
+
 
 \section{Numerical methods}
 
