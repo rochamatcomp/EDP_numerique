@@ -18,7 +18,6 @@ def main():
     points = [10, 20, 40, 80, 160, 320]
 
     errors = []
-
     for NX in points:
         norme = difference_finites(NX+1)
         errors.append(norme)
@@ -28,12 +27,14 @@ def main():
     lix = [1/x for x in points]
 
     plt.figure(0)
-    plt.plot(points, lix)
-    plt.plot(points, errors, "r")
-
+    line1 = plt.plot(points, lix, label = '1/x')
+    line2 = plt.plot(points, errors, "r", label = 'Erreurs')
+    plt.legend(handles = [line1[0], line2[0]])
+    
     plt.figure(1)
-    plt.loglog(points, lix)
-    plt.loglog(points, errors, "r")
+    linelog1 = plt.loglog(points, lix, label = 'Log 1/x')
+    linelog2 = plt.loglog(points, errors, "r", label = 'Log erreurs')
+    plt.legend(handles = [linelog1[0], linelog2[0]])    
 
     plt.show()
 
@@ -45,7 +46,7 @@ def difference_finites(NX):
     # PARAMETRES PHYSIQUES
     Lx = 1.0  #taille du domaine
     T = 0.4 #temps d'integration
-    time = 0.001
+    t = 0.001 # temps d'integration pour la solution exacte
 
     print("T final=",T)
 
@@ -76,7 +77,7 @@ def difference_finites(NX):
 
     # Solution exacte
     U_sol =  np.zeros(NX)
-    U_sol = np.exp(-4*(np.pi**2) * time) * (alpha * np.sin(2*np.pi*xx) + beta * np.cos(2*np.pi*xx))
+    U_sol = np.exp(-4*(np.pi**2) * t) * (alpha * np.sin(2*np.pi*xx) + beta * np.cos(2*np.pi*xx))
 
     # Condition initial
     U_data = np.zeros(NX)
@@ -99,10 +100,7 @@ def difference_finites(NX):
 
         time=time+dt
         if (n%100 == 0):
-            print ("t=",time)
-
-        #for j in np.arange(0, NX):
-        #    U_sol[j] = np.exp(-4*(np.pi**2)*time) * (alpha * np.sin(2*np.pi*xx[j]) + beta * np.cos(2*np.pi*xx[j]))
+            print ("t=",time)    
 
         # schemas explicites
         for j in np.arange(2, NX-2):
