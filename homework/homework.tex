@@ -228,7 +228,7 @@ Le symbole du schéma (\ref{scheme}) est donné par :
 \lambda(\theta) = \sum \limits_{r=-2}^{2} \alpha_{r} e^{\mathbf{i} \theta r}, \quad \theta \in \mathbb{R}
 \end{equation*}
 
-Par développement de ce (\ref{scheme}) on a :
+Par développement de ce schéma on a :
 
 \begin{equation*}
     \begin{array}{rcl}
@@ -259,10 +259,50 @@ Par développement de ce (\ref{scheme}) on a :
 
 \section{Consistence du schéma}
 
-On a par un développement de Taylor :
+Par développement de Taylor du schéma (\ref{scheme}) on a:
 
+\begin{equation*}
+    u(x_{j-1}, t^{n}) =
+    u(x_{j}, t^{n})
+     - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
 
+\begin{equation*}
+    u(x_{j+1}, t^{n}) =
+    u(x_{j}, t^{n})
+     - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
 
+\begin{equation*}
+    u(x_{j-2}, t^{n}) =
+    u(x_{j}, t^{n})
+     - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(2\Delta x)^{3}}{6} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
 
+\begin{equation*}
+    u(x_{j+2}, t^{n}) =
+    u(x_{j}, t^{n})
+     - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(2\Delta x)^{3}}{6} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
+
+\begin{equation*}
+    u(x_{j}, t^{n+1}) =
+    u(x_{j}, t^{n})    
+     + \Delta t \frac{\partial}{\partial t}u(x_{j}, t^{n})
+     + \frac{(\Delta t)^{2}}{2} \frac{\partial^{2}}{\partial t^{2}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta t)^{3})
+\end{equation*}
 
 \end{document}

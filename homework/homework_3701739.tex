@@ -226,6 +226,89 @@ x^{*}(t) &=& t + x_{*}-t_{*}
 
 \part{Numerical methods}
 
-\section{}
+\begin{equation}
+    \left\{
+    \begin{array}{rclll}
+        \partial_{t}u - \partial_{xx}u &=& 0, &x \in \mathbb{R}, & t>0, \\
+        u(0, x) &=& u_{0}(x), &x \in \mathbb{R} &
+    \end{array}
+    \right.
+\end{equation}
+
+La discrétisation de type Différences Finis explicite avec un schéma sur la forme :
+\begin{equation}
+    \begin{array}{rcl}
+        \frac{u^{n+1}_{j} - u^{n}_{j}}{\Delta t}
+        -\frac{4}{3} \frac{u^{n}_{j+1} - 2u^{n}_{j} + u^{n}_{j-1}}{\Delta x^{2}}
+        +\frac{1}{12} \frac{u^{n}_{j+2} - 2u^{n}_{j} + u^{n}_{j-2}}{\Delta x^{2}}
+        -\frac{\Delta t^{2}}{2} \frac{u^{n}_{j+2} - 4u^{n}_{j+1} + 6u^{n}_{j}  - 4u^{n}_{j-1} + u^{n}_{j-2}}{\Delta x^{4}}  &=& 0 \label{scheme}
+    \end{array}
+\end{equation}
+
+
+\section{Determination du symbol du schéma}
+
+Le symbole du schéma (\ref{scheme}) est donné par :
+\begin{equation*}
+\lambda(\theta) = \sum \limits_{r=-2}^{2} \alpha_{r} e^{\mathbf{i} \theta r}, \quad \theta \in \mathbb{R}
+\end{equation*}
+
+Par développement de ce schéma on a :
+
+\begin{equation*}
+    \begin{array}{rcl}
+        u^{n+1}_{j} &=& \alpha_{0} u^{n}_{j} + \alpha_{-1} u^{n}_{j-1} + \alpha_{-2} u^{n}_{j-2} + \alpha_{1} u^{n}_{j+1}  + \alpha_{2} u^{n}_{j+2}, \quad o\grave{u}
+    \end{array}
+\end{equation*}
+
+\begin{equation*}
+    \left\{
+    \begin{array}{rcl}
+        \alpha_{0} &=& 1 - \scriptstyle \frac{15}{6} \nu + 3 \nu^{2} \\
+        \alpha_{-1} &=& \scriptstyle \frac{4}{3} \nu - 2 \nu^{2} \\
+        \alpha_{-2} &=& \scriptstyle \frac{-1}{12} \nu + \frac{1}{2} \nu^{2} \\
+        \alpha_{1} &=& \scriptstyle \frac{4}{3} \nu - 2 \nu^{2} \\
+        \alpha_{2} &=& \scriptstyle \frac{-1}{12} \nu + \frac{1}{2} \nu^{2}
+    \end{array}
+    \right.,
+\end{equation*}
+
+\begin{equation*}
+    avec \quad
+    \begin{array}{rcl}
+        \nu &=& \Delta t/\Delta x^{2} \\
+        \nu^{2} &=& \Delta t^{2}/\Delta x^{4}
+    \end{array}
+\end{equation*}
+
+
+\section{Consistence du schéma}
+
+Par développement de Taylor du schéma (\ref{scheme}) on a:
+
+\begin{equation*}
+    \begin{array}{rcl}
+        & u(x_{j-1}, t^{n}) = u(x_{j+1}, t^{n}) & \\
+        &=& \\
+        & u(x_{j}, t^{n})
+         - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+         + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+         - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+         + \mathcal{O}((\Delta x)^{4}) &
+    \end{array}
+\end{equation*}
+
+\begin{equation*}
+    \begin{array}{rcl}
+        & u(x_{j-2}, t^{n}) = u(x_{j+2}, t^{n}) & \\
+        &=& \\
+        & u(x_{j}, t^{n})
+         - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+         + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+         - \frac{(2\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+         + \mathcal{O}((\Delta x)^{4}) &
+    \end{array}
+\end{equation*}
+
 
 \end{document}
