@@ -305,6 +305,7 @@ On fait un changement de variable à chaque terme d'integrale :
     ||e^{At}||_{\mathcal{L}(Y_p)} \le 1 + e^{-2\sigma t}
 \end{equation*}
 
+%%% L2
 
 \subsection{\( Y_{2} = L^{2}(\mathbb{R})^{2} \)}
 
@@ -393,6 +394,89 @@ On fait un changement de variable à chaque terme d'integrale :
 \begin{equation*}
     ||e^{At}||_{\mathcal{L}(Y_{2})} \le max(1, e^{-2\sigma t})
 \end{equation*}
+
+%%% L INFINIT
+
+\subsection{\( Y_{\infty} = L^{\infty}(\mathbb{R})^{2} \)}
+
+\begin{equation*}
+\begin{array}{rcl}
+    ||(a,b)||_{\infty} &=& max(||a||_{L^{\infty}(\mathbb{R})}, ||b||_{L^{\infty}(\mathbb{R})}) \\
+    \sigma = 0, & et & t\ge 0
+\end{array}
+\end{equation*}
+
+Montrons que $||e^{At}||_{\mathcal{L}(Y_{\infty})} \leq 2$.\\ \\
+Par d\'efinition, nous avons :
+
+\begin{displaymath}
+    ||U(t)||_{\infty}=\max(||p(t)||_{L^{\infty}(\mathbb{R})},||v(t)||_{L^{\infty}(\mathbb{R})})
+\end{displaymath}
+avec
+\begin{displaymath}
+    ||p(t)||_{L^{\infty}(\mathbb{R})}=\sup_{x\in \mathbb{R}}|p(x,t)| \quad \mbox{et} \quad ||v(t)||_{L^{\infty}(\mathbb{R})}=\sup_{x\in \mathbb{R}}|v(x,t)|.
+\end{displaymath}
+
+\begin{displaymath}
+    \begin{split}
+        ||U(t)||_{\infty} &= \max \left( \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x-t)| + \frac{1}{2}\sup_{x \in \mathbb{R}} |v_0(x-t)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x+t)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x+t)| \right. , \\
+        & \qquad \left. \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x-t)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x-t)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x+t)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x+t)| \right)
+    \end{split}
+\end{displaymath}
+
+
+Par un changement de variable, on a :
+
+\begin{displaymath}
+    \begin{split}
+        ||U(t)||_{\infty} &= \max \left( \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}} |v_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| \right. , \\
+        & \qquad \left. \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| \right)
+    \end{split}
+\end{displaymath}
+
+\begin{displaymath}
+    \begin{split}
+        ||U(t)||_{\infty} &= \max \left( \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}} |v_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| \right. , \\
+        & \qquad \left. \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| \right)
+    \end{split}
+\end{displaymath}
+
+
+
+ce qui donne :
+\begin{equation}
+||v(t)||_{L^{\infty}(\mathbb{R})} \leq (1+e^{-2\sigma t})\max(||p_0||_{L^{\infty}(\mathbb{R})},||v_0||_{L^{\infty}(\mathbb{R})}).
+\label{16} 
+\end{equation}
+Par suite ~\eqref{15} et ~\eqref{16} implique que :
+\begin{displaymath}
+||U(t)||_{\infty} \leq (1+e^{-2\sigma t})||U_0||_{\infty}
+\end{displaymath}
+c'est \`a dire que :
+\begin{displaymath}
+||e^{At}U_0||_{\infty} \leq (1+e^{-2\sigma t})||U_0||_{\infty}
+\end{displaymath}
+d'o\`u
+\begin{equation}
+||e^{At}||_{\mathcal{L}(Y_{\infty})}\leq 1+e^{-2\sigma t}
+\label{17} 
+\end{equation}
+puisque
+\begin{displaymath}
+||e^{At}||_{\mathcal{L}(Y_{\infty})}=\sup_{U_0\in Y_{\infty}, ||U_0||_{\infty} \leq 1}||e^{At}U_0||_{\infty}.
+\end{displaymath}
+Et ainsi, lorsque $\sigma=0$, on obtient :
+\begin{equation}
+||e^{At}||_{\mathcal{L}(Y_{\infty})}\leq 2.
+\label{18} 
+\end{equation} 
+
+
+
+
+
+
+
 
 
 
