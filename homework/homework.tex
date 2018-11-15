@@ -306,6 +306,94 @@ On fait un changement de variable à chaque terme d'integrale :
 \end{equation*}
 
 
+\subsection{\( Y_{2} = L^{2}(\mathbb{R})^{2} \)}
+
+\begin{equation*}
+\begin{array}{rcl}
+    ||(a,b)||_{2} &=& \sqrt{||a||^{2}_{L^{2}(\mathbb{R})} + ||b||^{2}_{L^{2}(\mathbb{R})}}
+\end{array}
+\end{equation*}
+
+Montrons que :
+\( ||e^{At}||_{\mathcal{L}(Y_2)}\leq max(1, e^{-2\sigma t}) \qquad \mbox{pour tout} \qquad t\geq 0. \)\\ \\
+On a \( U(x,t)=(p(x,t),v(x,t)) \) \\
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||^{2}_{2} &= ||p(t)||^{2}_{L^{2}(\mathbb{R})} + ||v(t)||^{2}_{L^{2}(\mathbb{R})} \\
+    &= \int_{\mathbb{R}}{|p(x,t)|^{2}\,dx} + \int_{\mathbb{R}}{|v(x,t)|^{2}\,dx} \\
+    &= \frac{1}{4} \int_{\mathbb{R}} |p_0(x-t)+v_0(x-t) + (p_0(x+t)-v_0(x+t)) e^{-2\sigma t} |^{2} \,dx \\
+    & \quad +\frac{1}{4} \int_{\mathbb{R}} |p_0(x-t) + v_0(x-t) - (p_0(x+t) - v_0(x+t)) e^{-2\sigma t}|^{2} \,dx 
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||^{2}_{2} & \le \frac{1}{4} \left[ \int_{\mathbb{R}}|p_0(x-t) + v_0(x-t)|^{2} \,dx \right. \\
+   & \quad \left. + \int_{\mathbb{R}} |p_0(x+t) - v_0(x+t)|^{2}  e^{-4\sigma t} \,dx \right. \\
+   & \quad \left. + 2 \int_{\mathbb{R}} |p_0(x-t) + v_0(x-t)| |p_0(x+t) - v_0(x+t)| e^{-2\sigma t} \,dx \right] \\
+   & \quad + \frac{1}{4} \left[ \int_{\mathbb{R}}|p_0(x-t) + v_0(x-t)|^{2} \,dx \right. \\
+   & \quad \left. + \int_{\mathbb{R}} |p_0(x+t) - v_0(x+t)|^{2}  e^{-4\sigma t} \,dx \right. \\
+   & \quad \left. - 2 \int_{\mathbb{R}} |p_0(x-t) + v_0(x-t)| |p_0(x+t) - v_0(x+t)| e^{-2\sigma t} \,dx \right]
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||^{2}_{2} & \le \frac{1}{2} \left[ \int_{\mathbb{R}}|p_0(x-t) + v_0(x-t)|^{2} \,dx \right. \\
+   & \quad \left. + \int_{\mathbb{R}} |p_0(x+t) - v_0(x+t)|^{2}  e^{-4\sigma t} \,dx \right] \\
+   & \le \frac{1}{2} \left[ max(1, e^{-4\sigma t}) 
+   \int_{\mathbb{R}} |p_0(x-t) + v_0(x-t)|^{2} \,dx \right. \\
+   & \left. \qquad + max(1, e^{-4\sigma t}) 
+   \int_{\mathbb{R}} |p_0(x+t) - v_0(x+t)|^{2} \,dx \right] \\
+   & \le \frac{1}{2} max(1, e^{-4\sigma t}) \left[ \int_{\mathbb{R}} |p_0(x-t) + v_0(x-t)|^{2} \,dx + \int_{\mathbb{R}} |p_0(x+t) - v_0(x+t)|^{2} \,dx \right]
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||^{2}_{2} & \le \frac{1}{2} max(1, e^{-4\sigma t}) \left[ \int_{\mathbb{R}}|p_0(x-t)|^{2} \,dx + \int_{\mathbb{R}} |v_0(x-t)|^{2} \,dx \right. \\
+   & \quad \left. + 2 \int_{\mathbb{R}} |p_0(x-t)| |v_0(x-t)| \,dx \right. \\
+   & \quad + \left. \int_{\mathbb{R}}|p_0(x+t)|^{2} \,dx + \int_{\mathbb{R}} |v_0(x+t)|^{2} \,dx \right. \\
+   & \quad \left. - 2 \int_{\mathbb{R}} |p_0(x+t)| |v_0(x+t)| \,dx \right] \\
+\end{split}
+\end{equation*}
+
+On fait un changement de variable à chaque terme d'integrale :
+\begin{equation*}
+\begin{split}
+    ||U(t)||^{2}_{2} & \le \frac{1}{2} max(1, e^{-4\sigma t}) \left[ \int_{\mathbb{R}}|p_0(x)|^{2} \,dx + \int_{\mathbb{R}} |v_0(x)|^{2} \,dx \right. \\
+   & \left. \qquad  + 2 \int_{\mathbb{R}} |p_0(x)| |v_0(x)| \,dx \right. \\
+   & \left. \qquad + \int_{\mathbb{R}}|p_0(x)|^{2} \,dx + \int_{\mathbb{R}} |v_0(x)|^{2} \,dx \right. \\
+   & \qquad \left. - 2 \int_{\mathbb{R}} |p_0(x)| |v_0(x)| \,dx 
+    \right]
+\end{split}
+\end{equation*}
+
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||^{2}_{2} & \le max(1, e^{-4\sigma t}) \left[ \int_{\mathbb{R}}|p_0(x)|^{2} \,dx + \int_{\mathbb{R}} |v_0(x)|^{2} \,dx \right] \\
+\end{split}
+\end{equation*}
+
+
+\begin{equation*}
+    ||U(t)||^{2}_{2} \le max(1, e^{-4\sigma t}) ||U_{0}||^{2}_{2}
+\end{equation*}
+
+\begin{equation*}
+    ||U(t)||_{2} \le max(1, e^{-2\sigma t}) ||U_{0}||_{2}
+\end{equation*}
+
+\begin{equation*}
+||e^{At}||_{\mathcal{L}(Y_{2})} = \sup_{||U_{0}||_{2} = 1}\frac{||U(t)||_{2}}{||U_{0}||_{2}}
+\end{equation*}
+
+\begin{equation*}
+    ||e^{At}||_{\mathcal{L}(Y_{2})} \le max(1, e^{-2\sigma t})
+\end{equation*}
+
 
 
 
