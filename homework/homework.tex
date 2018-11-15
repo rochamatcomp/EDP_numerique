@@ -39,7 +39,7 @@ Considerons le système d'onde linéaire en dimension un
 
 \begin{equation*}
 \begin{array}{rcl}
-    ???\partial_{t}(p-v) + \partial_{x}(v-p) &=& \sigma(v-p) - \sigma(p-v) \\
+    \partial_{t}(p-v) + \partial_{x}(v-p) &=& \sigma(v-p) - \sigma(p-v) \\
     \partial_{t}(p-v) - \partial_{x}(p-v) &=& \sigma(v-p - p+v) \\
     &=& \sigma(2v-2p) \\
     &=& 2\sigma(v-p) \\
@@ -55,7 +55,10 @@ Considerons le système d'onde linéaire en dimension un
 On a deux équations de transport.
 
 \subsubsection*{Resolution par la méthode des caractéristiques}
-(3)
+Par l'équation (3) 
+\begin{equation*}
+\partial_{t}(p+v) + \partial_{x}(p+v) = 0 
+\end{equation*}
 
 \begin{equation*}
 \left\{
@@ -78,12 +81,16 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 
 \begin{equation*}
 \begin{array}{rcl}
-    (p+v)(x_{*},t^{*}) &=& (p_{0}+v_{0})(x_{*},t^{*}) \\
-    (p+v)(x,t) &=& p_{0}(x,t) + v_{0}(x,t)\\
+    (p+v)(x_{*},t^{*}) &=& (p_{0}+v_{0})(x_{*}-t^{*}) \\
+    (p+v)(x,t) &=& p_{0}(x-t) + v_{0}(x-t) \\
+    p(x,t) + v(x,t) &=& p_{0}(x-t) + v_{0}(x-t)
 \end{array}
 \end{equation*}
 
-(4)
+Par l'équation (4)
+\begin{equation*}
+\partial_{t}(p-v) - \partial_{x}(p-v) = -2\sigma(p-v)
+\end{equation*}
 
 \begin{equation*}
 \left\{
@@ -117,25 +124,38 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 \begin{equation*}
 \begin{array}{rcl}
     (p-v)(x_{1}^{*}(t), t) &=& (p_{0}-v_{0})(x_{*} + t^{*})\exp^{-2\sigma t^{*}} \\
-    (p-v)(x,t) &=& (p_{0}-v_{0})(x,t)\exp^{-2\sigma t}
+    (p-v)(x,t) &=& (p_{0}-v_{0})(x+t)\exp^{-2\sigma t}
 \end{array}
 \end{equation*}
 
 \begin{equation*}
 \left\{
 \begin{array}{rcl}
-    (p+v) &=& (x - t) + u_{0}(x - t) \\
-    (p-v) &=& (x + t) \exp^{-2\sigma t} - u_{0}(x + t) \exp^{-2\sigma t}
+    p(x, t) + v(x, t) &=& p_{0}(x - t) + v_{0}(x - t) \\
+    p(x, t) - v(x, t) &=& p_{0}(x + t) \exp^{-2\sigma t} - v_{0}(x + t) \exp^{-2\sigma t}
 \end{array}
 \right.
 \end{equation*}
 
+On va résoudre le système. \\ \\
+Par somme on a :
 \begin{equation*}
 \begin{array}{rcll}
-    u(x,t) &=& (p(x,t), v(x,t)) & \forall t \ge 0 \\
-    avec & & & \\
-    p(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) + (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] & \\
-    v(x,t) &=& 1/2\left[p_{0}(x - t) + u_{0}(x - t) - (p_{0}(x + t) - u_{0}(x + t))\exp^{-2\sigma t} \right] &
+    p(x,t) &=& 1/2\left[p_{0}(x - t) + v_{0}(x - t) + (p_{0}(x + t) - v_{0}(x + t))\exp^{-2\sigma t} \right] &
+\end{array}
+\end{equation*}
+
+Par différence on a : 
+\begin{equation*}
+\begin{array}{rcll}
+    v(x,t) &=& 1/2\left[p_{0}(x - t) + v_{0}(x - t) - (p_{0}(x + t) - v_{0}(x + t))\exp^{-2\sigma t} \right] &
+\end{array}
+\end{equation*}
+
+Donc \( \forall t > 0 \)
+\begin{equation*}
+\begin{array}{rcll}
+    u(x,t) &=& (p(x,t), v(x,t)) &
 \end{array}
 \end{equation*}
 
@@ -154,8 +174,8 @@ x^{*}(t) &=& t + x_{*}-t^{*}
 \begin{array}{rclcl}
     \partial_{x}
     \begin{pmatrix}
-        v \\
-        p
+        p \\
+        v
     \end{pmatrix} &=&
     \begin{pmatrix}
         0 & 1 \\
@@ -196,6 +216,100 @@ x^{*}(t) &=& t + x_{*}-t^{*}
     \end{pmatrix} & &
 \end{array}
 \end{equation*}
+
+\begin{displaymath}
+    \partial_t U = AU \,\,\,\,\,\, \mbox{si on pose}\,\,\,\,\, A=-A_1\partial_x + B
+\end{displaymath}
+
+\begin{displaymath}
+    \left\{
+    \begin{array}{rl}
+        \partial_t U &=AU\\
+        U_0 &=(p_0,v_0).
+        \end{array}
+    \right.
+    \Rightarrow \\
+    U(t) = e^{At} u_{0}
+\end{displaymath}
+
+\subsection{\( Y_{1} = L^{1}(\mathbb{R})^{2} \)}
+
+\begin{equation*}
+\begin{array}{rcl}
+    ||(a,b)||_{1} &=& ||a||_{L^{1}(\mathbb{R})} + ||b||_{L^{1}(\mathbb{R})}
+\end{array}
+\end{equation*}
+
+Montrons que :
+\( ||e^{At}||_{\mathcal{L}(Y_p)}\leq (1+e^{-2\sigma t}) \qquad \mbox{pour tout} \qquad t\geq 0. \)\\ \\
+On a \( U(x,t)=(p(x,t),v(x,t)) \) \\
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||_1 &= ||p(t)||_{L^1(\mathbb{R})} + ||v(t)||_{L^1(\mathbb{R})} \\
+    &= \int_{\mathbb{R}}{|p(x,t)|\,dx} + \int_{\mathbb{R}}{|v(x,t)|\,dx} \\
+    &= \frac{1}{2} \int_{\mathbb{R}}|p_0(x-t)+v_0(x-t) + [p_0(x+t)-v_0(x+t)] e^{-2\sigma t} | \,dx \\
+    & +\frac{1}{2} \int_{\mathbb{R}}|p_0(x-t)+v_0(x-t) - [p_0(x+t)-v_0(x+t)] e^{-2\sigma t} | \,dx
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||_1 & \le \frac{1}{2} \left[\int_{\mathbb{R}}|p_0(x-t)| \,dx + \int_{\mathbb{R}} |v_0(x-t)| \,dx + \right. \\
+   & \qquad \left. + e^{-2\sigma t} \left( \int_{\mathbb{R}} |p_0(x+t)| \,dx + \int_{\mathbb{R}} |v_0(x+t)| \,dx \right) \right] + \\
+   & + \frac{1}{2} \left[ \int_{\mathbb{R}}|p_0(x-t)| \,dx + \int_{\mathbb{R}} |v_0(x-t)| \,dx + \right. \\
+   & \qquad \left. + e^{-2\sigma t} \left( \int_{\mathbb{R}} |p_0(x+t)| \,dx + \int_{\mathbb{R}} |v_0(x+t)| \,dx \right) \right]
+\end{split}
+\end{equation*}
+
+On fait un changement de variable à chaque terme d'integrale :
+\begin{equation*}
+\begin{split}
+    ||U(t)||_1 & \le \frac{1}{2} \left[\int_{\mathbb{R}}|p_0(x)| \,dx + \int_{\mathbb{R}} |v_0(x)| \,dx + \right. \\
+   & \qquad \left. + e^{-2\sigma t} \left(\int_{\mathbb{R}} |p_0(x)| \,dx + \int_{\mathbb{R}} |v_0(x)| \,dx \right) \right] + \\
+   & + \frac{1}{2} \left[ \int_{\mathbb{R}}|p_0(x)| \,dx + \int_{\mathbb{R}} |v_0(x)| \,dx + \right. \\
+   & \qquad \left. + e^{-2\sigma t} \left(\int_{\mathbb{R}} |p_0(x)| \,dx + \int_{\mathbb{R}} |v_0(x)| \,dx \right) \right]
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||_1 & \le \int_{\mathbb{R}}|p_0(x)| \,dx + \int_{\mathbb{R}} |v_0(x)| \,dx + \\
+   & \qquad + e^{-2\sigma t} \left( \int_{\mathbb{R}} |p_0(x)| \,dx + \int_{\mathbb{R}} |v_0(x)| \,dx \right)
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||_1 & \le ||p_0||_{L^{1}} + ||v_0||_{L^{1}} 
+    + e^{-2\sigma t} \left(||p_0||_{L^{1}} + ||v_0||_{L^{1}} \right)
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    ||U(t)||_1 & \le ||U_0||_{1} 
+    + e^{-2\sigma t} ||U_0||_{1}
+\end{split}
+\end{equation*}
+
+\begin{equation}
+    ||U(t)||_1 \le \left( 1 + e^{-2\sigma t} \right) ||U_0||_{1}
+\end{equation}
+
+\begin{equation*}
+||e^{At}||_{\mathcal{L}(Y_p)} = \sup_{||U_{0}||_1 = 1}\frac{||U(t)||_1}{||U_{0}||_1}
+\end{equation*}
+
+\begin{equation*}
+    ||e^{At}||_{\mathcal{L}(Y_p)} \le 1 + e^{-2\sigma t}
+\end{equation*}
+
+
+
+
+
+
 
 
 
@@ -259,6 +373,12 @@ Par développement de ce schéma on a :
 
 \section{Consistence du schéma}
 
+On définit l'erreur de troncature par :
+
+\begin{equation*}
+    r^{t}_{j} = u(x_{j}, t^{n+1}) -\alpha_{0} u(x_{j}, t^{n}) -\alpha_{-1} u(x_{j-1}, t^{n}) -\alpha_{-2} u(x_{j-2}, t^{n}) -\alpha_{+1} u(x_{j+1}, t^{n}) -\alpha_{+2} u(x_{j+2}, t^{n})
+\end{equation*}
+
 Par développement de Taylor du schéma (\ref{scheme}) on a:
 
 \begin{equation*}
@@ -301,8 +421,27 @@ Par développement de Taylor du schéma (\ref{scheme}) on a:
     u(x_{j}, t^{n+1}) =
     u(x_{j}, t^{n})    
      + \Delta t \frac{\partial}{\partial t}u(x_{j}, t^{n})
-     + \frac{(\Delta t)^{2}}{2} \frac{\partial^{2}}{\partial t^{2}}u(x_{j}, t^{n})
-     + \mathcal{O}((\Delta t)^{3})
+     + \mathcal{O}((\Delta t)^{2})
 \end{equation*}
+
+On obtient :
+
+\begin{align*}
+    & \frac{u(x_{j}, t^{n+1}) - u(x_{j}, t^{n})}{\Delta t} - \\
+    & -\frac{4}{3} \frac{u(x_{j+1}, t^{n}) - 2u(x_{j}, t^{n}) + u(x_{j-1}, t^{n})}{\Delta x^{2}} + \\
+    & +\frac{1}{12} \frac{u(x_{j+2}, t^{n}) - 2u(x_{j}, t^{n}) + u(x_{j-2}, t^{n})}{\Delta x^{2}} - \\
+    & -\frac{\Delta t^{2}}{2} \frac{u(x_{j+2}, t^{n}) - 4u(x_{j+1}, t^{n}) + 6u(x_{j}, t^{n})  - 4u(x_{j-1}, t^{n}) + u(x_{j-2}, t^{n})}{\Delta x^{4}} = \\
+   & = \mathcal{O}((\Delta t)^{2} + (\Delta x)^{4})
+\end{align*}
+
+Alors le schéma consistant et d'ordre 2 en temps et d'ordre 4 en espace.
+
+\subsection{Stabilité}
+La stabilité au sens de Von Neumann est une condition suffisante et nécessaire pour la stabilité uniforme en norme quadratique
+
+On obtient le résultat de convergence ???
+
+\subsection{}
+
 
 \end{document}
