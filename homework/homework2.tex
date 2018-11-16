@@ -10,6 +10,7 @@
 \usepackage{amsmath, mathtools}   % équations, matrices, etc..
 \usepackage{amssymb,amsfonts}  % tous les symboles math de AMS
 
+\setcounter{section}{1}
 \renewcommand{\thesubsection}{\alph{subsection})}
 
 \begin{document}
@@ -26,28 +27,23 @@
 \end{equation}
 
 La discrétisation de type Différences Finis explicite avec un schéma sur la forme :
-\begin{equation}
-    \begin{array}{rcl}
+\begin{equation} \label{scheme}
+    \begin{split} 
         \frac{u^{n+1}_{j} - u^{n}_{j}}{\Delta t}
         -\frac{4}{3} \frac{u^{n}_{j+1} - 2u^{n}_{j} + u^{n}_{j-1}}{\Delta x^{2}}
-        +\frac{1}{12} \frac{u^{n}_{j+2} - 2u^{n}_{j} + u^{n}_{j-2}}{\Delta x^{2}}
-        -\frac{\Delta t^{2}}{2} \frac{u^{n}_{j+2} - 4u^{n}_{j+1} + 6u^{n}_{j}  - 4u^{n}_{j-1} + u^{n}_{j-2}}{\Delta x^{4}}  &=& 0 \label{scheme}
-    \end{array}
+        +\frac{1}{12} \frac{u^{n}_{j+2} - 2u^{n}_{j} + u^{n}_{j-2}}{\Delta x^{2}} - \\
+        -\frac{\Delta t^{2}}{2} \frac{u^{n}_{j+2} - 4u^{n}_{j+1} + 6u^{n}_{j}  - 4u^{n}_{j-1} + u^{n}_{j-2}}{\Delta x^{4}}  = 0 
+    \end{split}
 \end{equation}
 
 
 \subsection{Determination du symbol du schéma}
 
-Le symbole du schéma (\ref{scheme}) est donné par :
-\begin{equation*}
-\lambda(\theta) = \sum \limits_{r=-2}^{2} \alpha_{r} e^{\mathbf{i} \theta r}, \quad \theta \in \mathbb{R}
-\end{equation*}
-
-Par développement de ce schéma on a :
+Par développement du schéma (\ref{scheme}) on a :
 
 \begin{equation*}
     \begin{array}{rcl}
-        u^{n+1}_{j} &=& \alpha_{0} u^{n}_{j} + \alpha_{-1} u^{n}_{j-1} + \alpha_{-2} u^{n}_{j-2} + \alpha_{1} u^{n}_{j+1}  + \alpha_{2} u^{n}_{j+2}, \quad o\grave{u}
+        u^{n+1}_{j} &=& \alpha_{0} u^{n}_{j} + \alpha_{-1} u^{n}_{j-1} + \alpha_{-2} u^{n}_{j-2} + \alpha_{1} u^{n}_{j+1} + \alpha_{2} u^{n}_{j+2}, \quad o\grave{u}
     \end{array}
 \end{equation*}
 
@@ -71,8 +67,22 @@ Par développement de ce schéma on a :
     \end{array}
 \end{equation*}
 
+Le symbole du schéma (\ref{scheme}) est donné par :
 
-\section{Consistence du schéma}
+\begin{equation*}
+    \lambda(\theta) = \sum \limits_{r=-2}^{2} \alpha_{r} e^{\mathbf{i} \theta r}, \quad \theta \in \mathbb{R}
+\end{equation*}
+
+\begin{equation}
+    \begin{split}
+        \lambda(\theta) &= 1 - \frac{15}{6} \nu + 3 \nu^{2} +
+        2 \left( \frac{4}{3} \nu - 2 \nu^{2} \right) \cos{\theta} +
+        2 \left( \frac{-1}{12} \nu + \frac{1}{2} \nu^{2} \right) \cos{2\theta}
+    \end{split}
+\end{equation}
+
+
+\subsection{Consistence du schéma}
 
 On définit l'erreur de troncature par :
 
