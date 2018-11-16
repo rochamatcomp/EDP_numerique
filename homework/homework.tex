@@ -12,7 +12,13 @@
 
 \renewcommand{\thesubsection}{\alph{subsection})}
 
+\title{\textbf{DEVOIR MAISON - MÉTHODES NUMÉRIQUES POUR LES EDP INSTATIONNAIRES: DIFFÉRENCES FINIES ET VOLUMES FINIS}}
+
+\author{Papa Makhtar CISS}
+
 \begin{document}
+
+\maketitle
 
 \section{Semi-group estimates}
 Pour \( \sigma \in \mathbb{R} \)
@@ -436,184 +442,73 @@ Par un changement de variable, on a :
 
 \begin{displaymath}
     \begin{split}
-        ||U(t)||_{\infty} &= \max \left( \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}} |v_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| \right. , \\
-        & \qquad \left. \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|p_0(x)| + \frac{1}{2}\sup_{x \in \mathbb{R}}|v_0(x)| \right)
+        ||U(t)||_{\infty} &= \max \left( \sup_{x \in \mathbb{R}}|p_0(x)| + \sup_{x \in \mathbb{R}} |v_0(x)| \, , \,
+        \sup_{x \in \mathbb{R}}|p_0(x)| + \sup_{x \in \mathbb{R}}|v_0(x)| \right)
     \end{split}
 \end{displaymath}
 
-
-
-ce qui donne :
-\begin{equation}
-||v(t)||_{L^{\infty}(\mathbb{R})} \leq (1+e^{-2\sigma t})\max(||p_0||_{L^{\infty}(\mathbb{R})},||v_0||_{L^{\infty}(\mathbb{R})}).
-\label{16} 
-\end{equation}
-Par suite ~\eqref{15} et ~\eqref{16} implique que :
 \begin{displaymath}
-||U(t)||_{\infty} \leq (1+e^{-2\sigma t})||U_0||_{\infty}
+    \begin{split}
+        ||U(t)||_{\infty} &= \max \left( ||p_0||_{L^{\infty}(\mathbb{R})} + ||v_0||_{L^{\infty}(\mathbb{R})} \, , \,
+        ||p_0||_{L^{\infty}(\mathbb{R})} + ||v_0||_{L^{\infty}(\mathbb{R})} \right)
+    \end{split}
 \end{displaymath}
-c'est \`a dire que :
+
 \begin{displaymath}
-||e^{At}U_0||_{\infty} \leq (1+e^{-2\sigma t})||U_0||_{\infty}
+    \begin{split}
+        ||U(t)||_{\infty} & \le \max \left( ||p_0||_{L^{\infty}(\mathbb{R})} + ||v_0||_{L^{\infty}(\mathbb{R})} + ||p_0||_{L^{\infty}(\mathbb{R})} + ||v_0||_{L^{\infty}(\mathbb{R})} \right)
+    \end{split}
 \end{displaymath}
-d'o\`u
-\begin{equation}
-||e^{At}||_{\mathcal{L}(Y_{\infty})}\leq 1+e^{-2\sigma t}
-\label{17} 
-\end{equation}
-puisque
+
 \begin{displaymath}
-||e^{At}||_{\mathcal{L}(Y_{\infty})}=\sup_{U_0\in Y_{\infty}, ||U_0||_{\infty} \leq 1}||e^{At}U_0||_{\infty}.
+    \begin{split}
+        ||U(t)||_{\infty} & \le \max \left(2 ||p_0||_{L^{\infty}(\mathbb{R})}, 2||v_0||_{L^{\infty}(\mathbb{R})} \right)
+    \end{split}
 \end{displaymath}
-Et ainsi, lorsque $\sigma=0$, on obtient :
-\begin{equation}
-||e^{At}||_{\mathcal{L}(Y_{\infty})}\leq 2.
-\label{18} 
-\end{equation} 
 
+\begin{displaymath}
+    \begin{split}
+        ||U(t)||_{\infty} & \le 2 \max \left(||p_0||_{L^{\infty}(\mathbb{R})}, ||v_0||_{L^{\infty}(\mathbb{R})} \right)
+    \end{split}
+\end{displaymath}
 
+\begin{displaymath}
+    \begin{split}
+        ||U(t)||_{\infty} & \le 2 ||U_0||_{\infty}
+    \end{split}
+\end{displaymath}
 
+\begin{equation*}
+||e^{At}||_{\mathcal{L}(Y_{\infty})} = \sup_{||U_{0}||_{\infty} = 1}\frac{||U(t)||_{\infty}}{||U_{0}||_{\infty}}  \le 2
+\end{equation*}
 
+\begin{equation*}
+    ||e^{At}||_{\mathcal{L}(Y_{\infty})} \le 2
+\end{equation*}
 
+\subsubsection*{Condition initial tel que \( ||e^{At}||_{\mathcal{L}(Y_{\infty})} = 2\) }
 
+Prenons \( p_{0} = 1 \) et 
 
-
-
-
-
-
-
-
-
-\section{Numerical methods}
-
-\begin{equation}
+\begin{equation*}
     \left\{
-    \begin{array}{rclll}
-        \partial_{t}u - \partial_{xx}u &=& 0, &x \in \mathbb{R}, & t>0, \\
-        u(0, x) &=& u_{0}(x), &x \in \mathbb{R} &
+    \begin{array}{rcl}
+        v_{0} = & 1 & si \, x \ge 0, \\
+        v_{0} = & -1 & si \,  x < 0.
     \end{array}
     \right.
-\end{equation}
-
-La discrétisation de type Différences Finis explicite avec un schéma sur la forme :
-\begin{equation}
-    \begin{array}{rcl}
-        \frac{u^{n+1}_{j} - u^{n}_{j}}{\Delta t}
-        -\frac{4}{3} \frac{u^{n}_{j+1} - 2u^{n}_{j} + u^{n}_{j-1}}{\Delta x^{2}}
-        +\frac{1}{12} \frac{u^{n}_{j+2} - 2u^{n}_{j} + u^{n}_{j-2}}{\Delta x^{2}}
-        -\frac{\Delta t^{2}}{2} \frac{u^{n}_{j+2} - 4u^{n}_{j+1} + 6u^{n}_{j}  - 4u^{n}_{j-1} + u^{n}_{j-2}}{\Delta x^{4}}  &=& 0 \label{scheme}
-    \end{array}
-\end{equation}
-
-
-\subsection{Determination du symbol du schéma}
-
-Le symbole du schéma (\ref{scheme}) est donné par :
-\begin{equation*}
-\lambda(\theta) = \sum \limits_{r=-2}^{2} \alpha_{r} e^{\mathbf{i} \theta r}, \quad \theta \in \mathbb{R}
-\end{equation*}
-
-Par développement de ce schéma on a :
-
-\begin{equation*}
-    \begin{array}{rcl}
-        u^{n+1}_{j} &=& \alpha_{0} u^{n}_{j} + \alpha_{-1} u^{n}_{j-1} + \alpha_{-2} u^{n}_{j-2} + \alpha_{1} u^{n}_{j+1}  + \alpha_{2} u^{n}_{j+2}, \quad o\grave{u}
-    \end{array}
-\end{equation*}
-
-\begin{equation*}
-    \left\{
-    \begin{array}{rcl}
-        \alpha_{0} &=& 1 - \scriptstyle \frac{15}{6} \nu + 3 \nu^{2} \\
-        \alpha_{-1} &=& \scriptstyle \frac{4}{3} \nu - 2 \nu^{2} \\
-        \alpha_{-2} &=& \scriptstyle \frac{-1}{12} \nu + \frac{1}{2} \nu^{2} \\
-        \alpha_{1} &=& \scriptstyle \frac{4}{3} \nu - 2 \nu^{2} \\
-        \alpha_{2} &=& \scriptstyle \frac{-1}{12} \nu + \frac{1}{2} \nu^{2}
-    \end{array}
-    \right.,
-\end{equation*}
-
-\begin{equation*}
-    avec \quad
-    \begin{array}{rcl}
-        \nu &=& \Delta t/\Delta x^{2} \\
-        \nu^{2} &=& \Delta t^{2}/\Delta x^{4}
-    \end{array}
 \end{equation*}
 
 
-\section{Consistence du schéma}
-
-On définit l'erreur de troncature par :
-
 \begin{equation*}
-    r^{t}_{j} = u(x_{j}, t^{n+1}) -\alpha_{0} u(x_{j}, t^{n}) -\alpha_{-1} u(x_{j-1}, t^{n}) -\alpha_{-2} u(x_{j-2}, t^{n}) -\alpha_{+1} u(x_{j+1}, t^{n}) -\alpha_{+2} u(x_{j+2}, t^{n})
+    ||e^{At}||_{\mathcal{L}(Y_{\infty})} = 2
 \end{equation*}
 
-Par développement de Taylor du schéma (\ref{scheme}) on a:
 
-\begin{equation*}
-    u(x_{j-1}, t^{n}) =
-    u(x_{j}, t^{n})
-     - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
-     + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
-     - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
-     + \mathcal{O}((\Delta x)^{4})
-\end{equation*}
 
-\begin{equation*}
-    u(x_{j+1}, t^{n}) =
-    u(x_{j}, t^{n})
-     - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
-     + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
-     - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
-     + \mathcal{O}((\Delta x)^{4})
-\end{equation*}
 
-\begin{equation*}
-    u(x_{j-2}, t^{n}) =
-    u(x_{j}, t^{n})
-     - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
-     + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
-     - \frac{(2\Delta x)^{3}}{6} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
-     + \mathcal{O}((\Delta x)^{4})
-\end{equation*}
 
-\begin{equation*}
-    u(x_{j+2}, t^{n}) =
-    u(x_{j}, t^{n})
-     - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
-     + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
-     - \frac{(2\Delta x)^{3}}{6} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
-     + \mathcal{O}((\Delta x)^{4})
-\end{equation*}
 
-\begin{equation*}
-    u(x_{j}, t^{n+1}) =
-    u(x_{j}, t^{n})    
-     + \Delta t \frac{\partial}{\partial t}u(x_{j}, t^{n})
-     + \mathcal{O}((\Delta t)^{2})
-\end{equation*}
-
-On obtient :
-
-\begin{align*}
-    & \frac{u(x_{j}, t^{n+1}) - u(x_{j}, t^{n})}{\Delta t} - \\
-    & -\frac{4}{3} \frac{u(x_{j+1}, t^{n}) - 2u(x_{j}, t^{n}) + u(x_{j-1}, t^{n})}{\Delta x^{2}} + \\
-    & +\frac{1}{12} \frac{u(x_{j+2}, t^{n}) - 2u(x_{j}, t^{n}) + u(x_{j-2}, t^{n})}{\Delta x^{2}} - \\
-    & -\frac{\Delta t^{2}}{2} \frac{u(x_{j+2}, t^{n}) - 4u(x_{j+1}, t^{n}) + 6u(x_{j}, t^{n})  - 4u(x_{j-1}, t^{n}) + u(x_{j-2}, t^{n})}{\Delta x^{4}} = \\
-   & = \mathcal{O}((\Delta t)^{2} + (\Delta x)^{4})
-\end{align*}
-
-Alors le schéma consistant et d'ordre 2 en temps et d'ordre 4 en espace.
-
-\subsection{Stabilité}
-La stabilité au sens de Von Neumann est une condition suffisante et nécessaire pour la stabilité uniforme en norme quadratique
-
-On obtient le résultat de convergence ???
-
-\subsection{}
 
 
 \end{document}

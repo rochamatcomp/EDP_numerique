@@ -1,0 +1,148 @@
+% !TeX encoding = UTF-8
+% !TeX program = pdflatex
+% !TeX spellcheck = fr_FR
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}       % encodage à privilégier pour la portabilité et +
+\usepackage[frenchb]{babel}       % francisation de libellés et de la typographie
+\usepackage[T1]{fontenc}          % encodage européen des caractères (Cork)
+\usepackage{lmodern}              % police europ'eennes vectorielles CM-like
+\usepackage[margin=28mm,bindingoffset=10mm]{geometry}
+\usepackage{amsmath, mathtools}   % équations, matrices, etc..
+\usepackage{amssymb,amsfonts}  % tous les symboles math de AMS
+
+\renewcommand{\thesubsection}{\alph{subsection})}
+
+\begin{document}
+
+\section{Numerical methods}
+
+\begin{equation}
+    \left\{
+    \begin{array}{rclll}
+        \partial_{t}u - \partial_{xx}u &=& 0, &x \in \mathbb{R}, & t>0, \\
+        u(0, x) &=& u_{0}(x), &x \in \mathbb{R} &
+    \end{array}
+    \right.
+\end{equation}
+
+La discrétisation de type Différences Finis explicite avec un schéma sur la forme :
+\begin{equation}
+    \begin{array}{rcl}
+        \frac{u^{n+1}_{j} - u^{n}_{j}}{\Delta t}
+        -\frac{4}{3} \frac{u^{n}_{j+1} - 2u^{n}_{j} + u^{n}_{j-1}}{\Delta x^{2}}
+        +\frac{1}{12} \frac{u^{n}_{j+2} - 2u^{n}_{j} + u^{n}_{j-2}}{\Delta x^{2}}
+        -\frac{\Delta t^{2}}{2} \frac{u^{n}_{j+2} - 4u^{n}_{j+1} + 6u^{n}_{j}  - 4u^{n}_{j-1} + u^{n}_{j-2}}{\Delta x^{4}}  &=& 0 \label{scheme}
+    \end{array}
+\end{equation}
+
+
+\subsection{Determination du symbol du schéma}
+
+Le symbole du schéma (\ref{scheme}) est donné par :
+\begin{equation*}
+\lambda(\theta) = \sum \limits_{r=-2}^{2} \alpha_{r} e^{\mathbf{i} \theta r}, \quad \theta \in \mathbb{R}
+\end{equation*}
+
+Par développement de ce schéma on a :
+
+\begin{equation*}
+    \begin{array}{rcl}
+        u^{n+1}_{j} &=& \alpha_{0} u^{n}_{j} + \alpha_{-1} u^{n}_{j-1} + \alpha_{-2} u^{n}_{j-2} + \alpha_{1} u^{n}_{j+1}  + \alpha_{2} u^{n}_{j+2}, \quad o\grave{u}
+    \end{array}
+\end{equation*}
+
+\begin{equation*}
+    \left\{
+    \begin{array}{rcl}
+        \alpha_{0} &=& 1 - \scriptstyle \frac{15}{6} \nu + 3 \nu^{2} \\
+        \alpha_{-1} &=& \scriptstyle \frac{4}{3} \nu - 2 \nu^{2} \\
+        \alpha_{-2} &=& \scriptstyle \frac{-1}{12} \nu + \frac{1}{2} \nu^{2} \\
+        \alpha_{1} &=& \scriptstyle \frac{4}{3} \nu - 2 \nu^{2} \\
+        \alpha_{2} &=& \scriptstyle \frac{-1}{12} \nu + \frac{1}{2} \nu^{2}
+    \end{array}
+    \right.,
+\end{equation*}
+
+\begin{equation*}
+    avec \quad
+    \begin{array}{rcl}
+        \nu &=& \Delta t/\Delta x^{2} \\
+        \nu^{2} &=& \Delta t^{2}/\Delta x^{4}
+    \end{array}
+\end{equation*}
+
+
+\section{Consistence du schéma}
+
+On définit l'erreur de troncature par :
+
+\begin{equation*}
+    r^{t}_{j} = u(x_{j}, t^{n+1}) -\alpha_{0} u(x_{j}, t^{n}) -\alpha_{-1} u(x_{j-1}, t^{n}) -\alpha_{-2} u(x_{j-2}, t^{n}) -\alpha_{+1} u(x_{j+1}, t^{n}) -\alpha_{+2} u(x_{j+2}, t^{n})
+\end{equation*}
+
+Par développement de Taylor du schéma (\ref{scheme}) on a:
+
+\begin{equation*}
+    u(x_{j-1}, t^{n}) =
+    u(x_{j}, t^{n})
+     - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
+
+\begin{equation*}
+    u(x_{j+1}, t^{n}) =
+    u(x_{j}, t^{n})
+     - \Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(\Delta x)^{3}}{3!} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
+
+\begin{equation*}
+    u(x_{j-2}, t^{n}) =
+    u(x_{j}, t^{n})
+     - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(2\Delta x)^{3}}{6} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
+
+\begin{equation*}
+    u(x_{j+2}, t^{n}) =
+    u(x_{j}, t^{n})
+     - 2\Delta x \frac{\partial}{\partial x}u(x_{j}, t^{n})
+     + \frac{(2\Delta x)^{2}}{2} \frac{\partial^{2}}{\partial x^{2}}u(x_{j}, t^{n})
+     - \frac{(2\Delta x)^{3}}{6} \frac{\partial^{3}}{\partial x^{3}}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta x)^{4})
+\end{equation*}
+
+\begin{equation*}
+    u(x_{j}, t^{n+1}) =
+    u(x_{j}, t^{n})    
+     + \Delta t \frac{\partial}{\partial t}u(x_{j}, t^{n})
+     + \mathcal{O}((\Delta t)^{2})
+\end{equation*}
+
+On obtient :
+
+\begin{align*}
+    & \frac{u(x_{j}, t^{n+1}) - u(x_{j}, t^{n})}{\Delta t} - \\
+    & -\frac{4}{3} \frac{u(x_{j+1}, t^{n}) - 2u(x_{j}, t^{n}) + u(x_{j-1}, t^{n})}{\Delta x^{2}} + \\
+    & +\frac{1}{12} \frac{u(x_{j+2}, t^{n}) - 2u(x_{j}, t^{n}) + u(x_{j-2}, t^{n})}{\Delta x^{2}} - \\
+    & -\frac{\Delta t^{2}}{2} \frac{u(x_{j+2}, t^{n}) - 4u(x_{j+1}, t^{n}) + 6u(x_{j}, t^{n})  - 4u(x_{j-1}, t^{n}) + u(x_{j-2}, t^{n})}{\Delta x^{4}} = \\
+   & = \mathcal{O}((\Delta t)^{2} + (\Delta x)^{4})
+\end{align*}
+
+Alors le schéma consistant et d'ordre 2 en temps et d'ordre 4 en espace.
+
+\subsection{Stabilité}
+La stabilité au sens de Von Neumann est une condition suffisante et nécessaire pour la stabilité uniforme en norme quadratique
+
+On obtient le résultat de convergence ???
+
+\subsection{}
+
+\end{document}
+
